@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center mt-4">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-4">View Profile</h2>
+                    <hr>
+
+                    <div class="row">
+                        <div class="col-md-4 text-center">
+                            {% if profile.profile_image %}
+                                <img src="{{ profile.profile_image.url }}" alt="Profile Image" class="img-fluid rounded-circle">
+                            {% else %}
+                                <img src="{% static 'img/default-profile-image.png' %}" alt="Default Profile Image" class="img-fluid rounded-circle">
+                            {% endif %}
+                        </div>
+                        <div class="col-md-8">
+                            <div class="mb-4">
+                                <p class="font-weight-bold">Username:</p>
+                                <p>{{ profile.user.username }}</p>
+                            </div>
+
+                            <div class="mb-4">
+                                <p class="font-weight-bold">Bio:</p>
+                                <p>{{ profile.bio }}</p>
+                            </div>
+
+                            <div class="mt-4">
+                                <a href="{% url 'edit_profile' %}" class="btn btn-primary">Edit Profile</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
